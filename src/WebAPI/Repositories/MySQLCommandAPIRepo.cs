@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using WebAPI.Data.Interfaces;
+using WebAPI.Interfaces;
 using WebAPI.Models;
 
-namespace WebAPI.Data.Repositories
+namespace WebAPI.Repositories
 {
     public class MySQLCommandAPIRepo : ICommandAPIRepo
     {
