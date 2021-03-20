@@ -59,7 +59,9 @@ namespace WebAPI
             DatabaseConfiguration databaseConfiguration = 
                 configurationSection.Get<DatabaseConfiguration>() ?? new DatabaseConfiguration();
             
-            string connectionString = databaseConfiguration.ConnectionString;
+            string connectionString = databaseConfiguration.ConnectionString
+                .Replace("USER", Configuration["UserID"])
+                .Replace("PASSWORD", Configuration["Password"]);
             int dbVersion = databaseConfiguration.Version;
             
             // Injecting database context
