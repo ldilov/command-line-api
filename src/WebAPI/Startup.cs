@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -33,6 +35,9 @@ namespace WebAPI
             // Inject Repository implementation
             services.AddScoped<DbContext, MainDbContext>();
             services.AddScoped<ICommandAPIRepo, MySQLCommandAPIRepo>();
+            
+            // Add automapper to map Models to DTOs
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
             
             // Inject database context
             this.ConfigureDatabase(services);
