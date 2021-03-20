@@ -31,7 +31,8 @@ namespace WebAPI
             services.AddControllers();
             
             // Inject Repository implementation
-            services.AddScoped<ICommandAPIRepo, MockCommandAPIRepo>();
+            services.AddScoped<DbContext, MainDbContext>();
+            services.AddScoped<ICommandAPIRepo, MySQLCommandAPIRepo>();
             
             // Inject database context
             this.ConfigureDatabase(services);
@@ -61,7 +62,7 @@ namespace WebAPI
             string connectionString = databaseConfiguration.ConnectionString;
             int dbVersion = databaseConfiguration.Version;
             
-            // Injectiong database context
+            // Injecting database context
             services.AddDbContext<MainDbContext>(options => { options.UseMySQL(connectionString); });
             
             // Process migrations
